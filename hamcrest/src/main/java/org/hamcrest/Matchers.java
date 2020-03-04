@@ -5,6 +5,7 @@ import org.hamcrest.core.IsIterableContaining;
 import org.hamcrest.core.StringRegularExpression;
 import org.hamcrest.text.IsEqualCompressingWhiteSpace;
 
+import java.util.Map;
 import java.util.regex.Pattern;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -1094,6 +1095,22 @@ public class Matchers {
    */
   public static <K, V> org.hamcrest.Matcher<java.util.Map<? extends K,? extends V>> hasEntry(org.hamcrest.Matcher<? super K> keyMatcher, org.hamcrest.Matcher<? super V> valueMatcher) {
     return org.hamcrest.collection.IsMapContaining.hasEntry(keyMatcher, valueMatcher);
+  }
+
+  /**
+   * Creates a matcher for {@link java.util.Map}s matching when the examined {@link java.util.Map} contains
+   * at least one entry whose key equals the specified <code>key</code> <b>and</b> whose
+   * value satisfies the specified <code>valueMatcher</code>.
+   * For example:
+   * <pre>assertThat(myMap, hasEntry("bar", is(notNullValue()))</pre>
+   *
+   * @param key
+   *     the key that, in combination with the value matcher, must be describe at least one entry
+   * @param valueMatcher
+   *     the value matcher that, in combination with the key, must be satisfied by at least one entry
+   */
+  public static <K, V> org.hamcrest.Matcher<java.util.Map<? extends K,? extends V>> hasEntry(K key, org.hamcrest.Matcher<? super V> valueMatcher) {
+    return org.hamcrest.collection.IsMapContaining.hasEntry(key, valueMatcher);
   }
 
   /**
